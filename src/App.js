@@ -1,49 +1,41 @@
-import React from "react";
+import React, { useReducer } from "react";
 import "./App.css";
-import ComponentA from "./components/ComponentA";
-// import DataFetching from "./components/DataFetching";
-// import ClassCounter from './components/ClassCounter';
-// import HookCounter from './components/HookCounter';
-// import HookCounter2 from './components/HookCounter2';
-// import HookCounter3 from './components/HookCounter3';
-// import HookCounter4 from './components/HookCounter4';
-// import HookCounterOne from './components/HookCounterOne';
-// import HookMouse from './components/HookMouse';
-// import MouseContainer from './components/MouseContainer';
-// import HookTimer from "./components/HookTimer";
+import ComponentA from "./components-third/ComponentA";
+import ComponentB from "./components-third/ComponentB";
+import ComponentC from "./components-third/ComponentC";
 
-export const UserContext = React.createContext();
-export const PasswordContext = React.createContext();
+// export const UserContext = React.createContext();
+// export const PasswordContext = React.createContext();
+
+export const CountContext = React.createContext();
+
+const initialState = 0;
+const reducer = (state, action) => {
+  switch (action) {
+    case "increment":
+      return state + 1;
+    case "decrement":
+      return state - 1;
+    case "reset":
+      return initialState;
+    default:
+      return state;
+  }
+};
 
 function App() {
+  const [count, dispatch] = useReducer(reducer, initialState);
   return (
-    <div className="App">
-      {/* <ClassCounter /> */}
-
-      {/* <HookCounter /> */}
-
-      {/* <HookCounter2 /> */}
-
-      {/* <HookCounter3 /> */}
-
-      {/* <HookCounter4 /> */}
-
-      {/* <HookCounterOne /> */}
-
-      {/* <HookMouse /> */}
-
-      {/* <MouseContainer /> */}
-
-      {/* <HookTimer /> */}
-
-      {/* <DataFetching /> */}
-
-      <UserContext.Provider value={"Hey yo"}>
-        <PasswordContext.Provider value={"123456"}>
-          <ComponentA />
-        </PasswordContext.Provider>
-      </UserContext.Provider>
-    </div>
+    <CountContext.Provider
+      value={{ countState: count, countDispatch: dispatch }}
+    >
+      <div className="App">
+        Count - {count}
+        <ComponentA />
+        <ComponentB />
+        <ComponentC />
+      </div>
+    </CountContext.Provider>
   );
 }
 
