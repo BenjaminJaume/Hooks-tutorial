@@ -1,15 +1,13 @@
 import React from "react";
 import "./App.css";
-import ClassTimer from "./components-seventh/ClassTimer";
-import HookTimer from "./components-seventh/HookTimer";
+import CounterOne from "./component-nineth/CounterOne";
+import CounterTwo from "./component-nineth/CounterTwo";
 
 function App() {
   return (
     <div className="App">
-      <div>
-        {/* <ClassTimer /> */}
-        <HookTimer />
-      </div>
+      <CounterOne />
+      <CounterTwo />
     </div>
   );
 }
