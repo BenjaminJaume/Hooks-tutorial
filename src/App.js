@@ -1,8 +1,9 @@
 import React, { useReducer } from "react";
 import "./App.css";
-import ComponentA from "./components-third/ComponentA";
-import ComponentB from "./components-third/ComponentB";
-import ComponentC from "./components-third/ComponentC";
+import DataFetchingOne from "./component-fourth/DataFetchingOne";
+// import ComponentA from "./components-third/ComponentA";
+// import ComponentB from "./components-third/ComponentB";
+// import ComponentC from "./components-third/ComponentC";
 
 // export const UserContext = React.createContext();
 // export const PasswordContext = React.createContext();
@@ -10,6 +11,7 @@ import ComponentC from "./components-third/ComponentC";
 export const CountContext = React.createContext();
 
 const initialState = 0;
+
 const reducer = (state, action) => {
   switch (action) {
     case "increment":
@@ -25,15 +27,20 @@ const reducer = (state, action) => {
 
 function App() {
   const [count, dispatch] = useReducer(reducer, initialState);
+
   return (
     <CountContext.Provider
       value={{ countState: count, countDispatch: dispatch }}
     >
       <div className="App">
-        Count - {count}
-        <ComponentA />
-        <ComponentB />
-        <ComponentC />
+        <div>
+          {/* Count - {count}
+          <ComponentA />
+          <ComponentB />
+          <ComponentC /> */}
+
+          <DataFetchingOne />
+        </div>
       </div>
     </CountContext.Provider>
   );
